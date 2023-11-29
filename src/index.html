@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprentissage des Langues</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+<h1>Apprentissage des Langues</h1>
 
+<div class="grid-container">
+    <div class="card" onclick="prononcerMot('Chat')">
+        <img src="lien_image_chat.jpg" alt="Chat">
+    </div>
+
+    <div class="card" onclick="prononcerMot('Chien')">
+        <img src="lien_image_chien.jpg" alt="Chien">
+    </div>
+
+    <div class="card" onclick="prononcerMot('Oiseau')">
+        <img src="lien_image_oiseau.jpg" alt="Oiseau">
+    </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>

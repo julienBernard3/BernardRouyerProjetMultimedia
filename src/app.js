@@ -6,7 +6,7 @@ function prononcerMot(mot) {
         var utterance = new SpeechSynthesisUtterance(mot);
 
         // Utilisez l'API Web Speech pour prononcer le mot
-        speechSynthesis.speak(utterance);
+        window.speechSynthesis.speak(utterance);
     } else {
         alert("La synthèse vocale n'est pas prise en charge par votre navigateur.");
     }

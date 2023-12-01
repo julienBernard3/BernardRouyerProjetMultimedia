@@ -10,19 +10,29 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            margin-left: 100px;
+            margin-right: 100px;
         }
 
         .card {
             border: 1px solid #ccc;
             padding: 10px;
             cursor: pointer;
+            /*alignement du contenu au centre */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <h1>Apprentissage des Langues</h1>
 <!-- Contenu de la page -->
-<div id="contenu">
+<div id="grille">
 </div>
 
 <script src="src/app.js"></script>

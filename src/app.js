@@ -1,27 +1,25 @@
-var mots = ['Chat', 'Chien', 'Oiseau']; // Ajoutez autant de mots que nécessaire
+var mots = ['Chat', 'Chien', 'Oiseau','Cheval']; // Ajoutez autant de mots que nécessaire
 var motCorrect;
 var resultatElement;
 
 
 // Fonction pour afficher la page d'apprentissage
 function afficherPageApprentissage() {
-    var contenu = document.getElementById('contenu');
-    contenu.innerHTML = '';
+    var grille = document.getElementById('grille');
+    grille.innerHTML = '';
 
-    // Ajoutez du contenu spécifique à la page d'apprentissage ici
+    // Ajoutez du grille spécifique à la page d'apprentissage ici
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
     afficherCartes(mots, cardContainer, function() { prononcerMot(this.firstChild.alt); });
-    contenu.appendChild(cardContainer);
+    grille.appendChild(cardContainer);
 
     // Bouton pour commencer le jeu
     var boutonCommencerJeu = document.createElement('button');
     boutonCommencerJeu.innerText = 'Commencer le Jeu';
     boutonCommencerJeu.onclick = afficherPageJeu;
-    contenu.appendChild(boutonCommencerJeu);
+    grille.appendChild(boutonCommencerJeu);
 
-    resultatElement = document.createElement('p');
-    contenu.appendChild(resultatElement);
 }
 
 // Fonction pour afficher les cartes avec les images correspondant aux mots en mode apprentissage
@@ -32,6 +30,7 @@ function afficherCartes(mots, container, clickHandler) {
         card.onclick = clickHandler;
         var image = document.createElement('img');
         image.src = "images/" + mots[i].toLowerCase() + ".jpg"; // Remplacez par le lien réel
+        image.style.maxWidth = "100%";
         image.alt = mots[i];
         card.appendChild(image);
         container.appendChild(card);
@@ -58,23 +57,23 @@ function afficherPageJeu() {
     motCorrect = mots[Math.floor(Math.random() * mots.length)];
 
 
-    var contenu = document.getElementById('contenu');
-    contenu.innerHTML = '';
+    var grille = document.getElementById('grille');
+    grille.innerHTML = '';
 
-    // Ajoutez du contenu spécifique à la page du jeu ici
+    // Ajoutez du grille spécifique à la page du jeu ici
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
     afficherCartes(mots, cardContainer, function() { verifierMot(this.firstChild.alt); });
-    contenu.appendChild(cardContainer);
+    grille.appendChild(cardContainer);
 
     // Bouton pour revenir à la page d'apprentissage
     var boutonRevenirApprentissage = document.createElement('button');
     boutonRevenirApprentissage.innerText = 'Revenir à l\'Apprentissage';
     boutonRevenirApprentissage.onclick = afficherPageApprentissage;
-    contenu.appendChild(boutonRevenirApprentissage);
+    grille.appendChild(boutonRevenirApprentissage);
 
     resultatElement = document.createElement('p');
-    contenu.appendChild(resultatElement);
+    grille.appendChild(resultatElement);
 
     prononcerMot('Voici le mot à deviner.');
     prononcerMot(motCorrect);

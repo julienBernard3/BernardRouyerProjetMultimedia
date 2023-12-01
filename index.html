@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apprentissage des Langues</title>
+
     <style>
         /* Ajoutez des styles CSS selon vos préférences */
         .grid-container {
@@ -31,7 +32,16 @@
 </head>
 <body>
 <h1>Apprentissage des Langues</h1>
-<!-- Contenu de la page -->
+<h1>Liste des noms d'animaux</h1>
+
+<label for="langue">Sélectionnez une langue :</label>
+<select id="langue" onchange="mettreAJourNoms()">
+    <option value="francais">Français</option>
+    <option value="anglais">Anglais</option>
+    <option value="allemand">Allemand</option>
+    <option value="espagnol">Espagnol</option>
+    <option value="italien">Italien</option>
+</select>
 <div id="grille">
 </div>
 

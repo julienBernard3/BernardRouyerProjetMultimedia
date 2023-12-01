@@ -1,6 +1,20 @@
 // utilitaire.js
 
-var mots = ['Chat', 'Chien', 'Oiseau', 'Cheval'];
+const nomsAnimaux = {
+    francais: ['Chat', 'Cheval', 'Chien', 'Chèvre', 'Mouton', 'Oiseau', 'Poisson', 'Poule', 'Vache'],
+    anglais: ['Cat', 'Horse', 'Dog', 'Goat', 'Sheep', 'Bird', 'Fish', 'Chicken', 'Cow'],
+    allemand: ['Katze', 'Pferd', 'Hund', 'Ziege', 'Schaf', 'Vogel', 'Fisch', 'Huhn', 'Kuh'],
+    espagnol: ['Gato', 'Caballo', 'Perro', 'Cabra', 'Oveja', 'Pájaro', 'Pescado', 'Pollo', 'Vaca'],
+    italien: ['Gatto', 'Cavallo', 'Cane', 'Capra', 'Pecora', 'Uccello', 'Pesce', 'Pollo', 'Mucca']
+};
+var mots = nomsAnimaux['francais'];
+
+function mettreAJourNoms() {
+    const langueSelectionnee = document.getElementById('langue').value;
+
+    // Renvoyer la liste des noms correspondant à la langue sélectionnée
+    mots = nomsAnimaux[langueSelectionnee];
+}
 
 // Fonction pour afficher la page d'apprentissage
 function afficherPage(page) {
@@ -32,7 +46,7 @@ function afficherCartes(mots, container, clickHandler) {
         card.className = 'card';
         card.onclick = clickHandler;
         var image = document.createElement('img');
-        image.src = "images/" + mots[i].toLowerCase() + ".jpg";
+        image.src = "images/" + nomsAnimaux["francais"][i] + ".jpg";
         image.style.maxWidth = "100%";
         image.alt = mots[i];
         card.appendChild(image);

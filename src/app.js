@@ -11,7 +11,7 @@ function afficherPageApprentissage() {
     // Ajoutez du contenu spécifique à la page d'apprentissage ici
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
-    afficherCartesApprentissage(mots, cardContainer, function() { prononcerMot(this.firstChild.alt); });
+    afficherCartes(mots, cardContainer, function() { prononcerMot(this.firstChild.alt); });
     contenu.appendChild(cardContainer);
 
     // Bouton pour commencer le jeu
@@ -25,11 +25,10 @@ function afficherPageApprentissage() {
 }
 
 // Fonction pour afficher les cartes avec les images correspondant aux mots en mode apprentissage
-function afficherCartesApprentissage(mots, container, clickHandler) {
+function afficherCartes(mots, container, clickHandler) {
     for (var i = 0; i < mots.length; i++) {
         var card = document.createElement('div');
         card.className = 'card';
-        console.log(mots[i]);
         card.onclick = clickHandler;
         var image = document.createElement('img');
         image.src = "images/" + mots[i].toLowerCase() + ".jpg"; // Remplacez par le lien réel
@@ -55,13 +54,17 @@ function prononcerMot(mot) {
 
 // Fonction pour afficher la page du jeu
 function afficherPageJeu() {
+    // Initialise motCorrect avec un mot aléatoire
+    motCorrect = mots[Math.floor(Math.random() * mots.length)];
+
+
     var contenu = document.getElementById('contenu');
     contenu.innerHTML = '';
 
     // Ajoutez du contenu spécifique à la page du jeu ici
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
-    afficherCartesApprentissage(mots, cardContainer, function() { verifierMot(this.firstChild.alt); });
+    afficherCartes(mots, cardContainer, function() { verifierMot(this.firstChild.alt); });
     contenu.appendChild(cardContainer);
 
     // Bouton pour revenir à la page d'apprentissage
@@ -72,7 +75,33 @@ function afficherPageJeu() {
 
     resultatElement = document.createElement('p');
     contenu.appendChild(resultatElement);
+
+    prononcerMot('Voici le mot à deviner.');
+    prononcerMot(motCorrect);
 }
+
+// Fonction pour vérifier la réponse de l'utilisateur lors du jeu
+function verifierMot(reponseUtilisateur) {
+    if (reponseUtilisateur === motCorrect) {
+        resultatElement.innerText = 'Bonne réponse!';
+        prononcerMot('Bien joué! Vous avez trouvé le mot correct:'+motCorrect+'.');
+
+        // Initialisez motCorrect avec un nouveau mot aléatoire
+        motCorrect = mots[Math.floor(Math.random() * mots.length)];
+        prononcerMot('Voici le nouveau mot à deviner.');
+        prononcerMot(motCorrect);
+
+        // Affichez les nouvelles cartes avec le mot correct mis à jour
+        var cardContainer = document.createElement('div');
+        cardContainer.className = 'grid-container';
+        afficherCartesApprentissage(mots, cardContainer, function() { verifierMot(this.firstChild.alt); });
+        contenu.replaceChild(cardContainer, contenu.firstChild);
+    } else {
+        resultatElement.innerText = 'Réponse incorrecte. Essayez encore.';
+        prononcerMot('Désolé, la réponse est incorrecte.');
+    }
+}
+
 
 
 // Fonction pour afficher la page spécifiée

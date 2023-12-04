@@ -7,6 +7,8 @@ const nomsAnimaux = {
     espagnol: ['Gato', 'Caballo', 'Perro', 'Cabra', 'Oveja', 'Pájaro', 'Pescado', 'Pollo', 'Vaca'],
     italien: ['Gatto', 'Cavallo', 'Cane', 'Capra', 'Pecora', 'Uccello', 'Pesce', 'Pollo', 'Mucca']
 };
+var voices = window.speechSynthesis.getVoices();
+
 var mots = nomsAnimaux['francais'];
 
 function mettreAJourNoms() {
@@ -34,21 +36,25 @@ function prononcerMot(mot) {
     if ('speechSynthesis' in window) {
         var utterance = new SpeechSynthesisUtterance(mot);
         // Sélection de la voix en fonction de la langue
+        if(voices.length === 0){
+            voices = window.speechSynthesis.getVoices();
+        }
+        console.log(voices);
         switch (document.getElementById('langue').value) {
             case 'francais':
-                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'fr-FR');
+                utterance.voice = voices.find(voice => voice.lang === 'fr-FR');
                 break;
             case 'anglais':
-                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'en-US');
+                utterance.voice = voices.find(voice => voice.lang === 'en-US');
                 break;
             case 'allemand':
-                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'de-DE');
+                utterance.voice = voices.find(voice => voice.lang === 'de-DE');
                 break;
             case 'espagnol':
-                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'es-ES');
+                utterance.voice = voices.find(voice => voice.lang === 'es-ES');
                 break;
             case 'italien':
-                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'it-IT');
+                utterance.voice = voices.find(voice => voice.lang === 'it-IT');
                 break;
         }
         window.speechSynthesis.speak(utterance);

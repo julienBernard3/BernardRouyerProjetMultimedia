@@ -11,12 +11,14 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-left: 10%;
-            margin-right: 10%;
+            margin: 10px 10%;
         }
 
+        /*Ombre bordure du dessous et a droite*/
         .card {
             border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
             cursor: pointer;
             /*alignement du contenu au centre */
@@ -26,12 +28,45 @@
             align-items: center;
             height: 20vh;
         }
+
         h1 {
             text-align: center;
         }
+
         img {
             height: 100%;
         }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        select {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        option {
+            text-align: center;
+        }
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>

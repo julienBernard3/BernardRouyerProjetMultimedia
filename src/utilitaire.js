@@ -33,6 +33,24 @@ window.onload = function() {
 function prononcerMot(mot) {
     if ('speechSynthesis' in window) {
         var utterance = new SpeechSynthesisUtterance(mot);
+        // Sélection de la voix en fonction de la langue
+        switch (document.getElementById('langue').value) {
+            case 'francais':
+                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'fr-FR');
+                break;
+            case 'anglais':
+                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'en-US');
+                break;
+            case 'allemand':
+                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'de-DE');
+                break;
+            case 'espagnol':
+                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'es-ES');
+                break;
+            case 'italien':
+                utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === 'it-IT');
+                break;
+        }
         window.speechSynthesis.speak(utterance);
     } else {
         alert("La synthèse vocale n'est pas prise en charge par votre navigateur.");

@@ -48,32 +48,37 @@ function afficherPageJeu() {
 
 // Fonction pour vérifier la réponse de l'utilisateur lors du jeu
 function verifierMot(reponseUtilisateur) {
-    let messageBonneReponse, messageMauvaiseReponse, messageNouveauMot, messageFourni;
+    let messageBonneReponse, messageMauvaiseReponse, messageMauvaiseReponseTexte, messageNouveauMot;
 
     switch (document.getElementById('langue').value) {
         case 'francais':
-            messageBonneReponse = 'Bien joué! Vous avez trouvé le mot correct :';
+            messageBonneReponse = 'Bien joué! Vous avez trouvé le mot correct.';
             messageMauvaiseReponse = 'Désolé! Réponse incorrecte. Essayez encore. Le mot à deviner est :';
+            messageMauvaiseReponseTexte = 'Désolé! Réponse incorrecte. Essayez encore.';
             messageNouveauMot = 'Voici le nouveau mot à deviner.';
             break;
         case 'anglais':
-            messageBonneReponse = 'Good job! You got the correct word:';
+            messageBonneReponse = 'Good job! You got the correct word.';
             messageMauvaiseReponse = 'Sorry! Incorrect answer. Try again. The word to guess is:';
+            messageMauvaiseReponseTexte = 'Sorry! Incorrect answer. Try again.';
             messageNouveauMot = 'Here is the new word to guess.';
             break;
         case 'allemand':
-            messageBonneReponse = 'Gut gemacht! Sie haben das richtige Wort gefunden:';
+            messageBonneReponse = 'Gut gemacht! Sie haben das richtige Wort gefunden.';
             messageMauvaiseReponse = 'Entschuldigung! Falsche Antwort. Versuchen Sie es erneut. Das zu erratende Wort lautet:';
+            messageMauvaiseReponseTexte = 'Entschuldigung! Falsche Antwort. Versuchen Sie es erneut.';
             messageNouveauMot = 'Hier ist das neue Wort zum Erraten.';
             break;
         case 'italien':
-            messageBonneReponse = 'Ottimo lavoro! Hai indovinato la parola corretta:';
+            messageBonneReponse = 'Ottimo lavoro! Hai indovinato la parola corretta.';
             messageMauvaiseReponse = 'Scusa! Risposta incorretta. Riprova. La parola da indovinare è:';
+            messageMauvaiseReponseTexte = 'Scusa! Risposta incorretta. Riprova.';
             messageNouveauMot = 'Ecco la nuova parola da indovinare.';
             break;
         case 'espagnol':
-            messageBonneReponse = '¡Bien hecho! Has acertado la palabra correcta:';
+            messageBonneReponse = '¡Bien hecho! Has acertado la palabra correcta.';
             messageMauvaiseReponse = '¡Siento! Respuesta incorrecta. Inténtalo de nuevo. La palabra a adivinar es:';
+            messageMauvaiseReponseTexte = '¡Siento! Respuesta incorrecta. Inténtalo de nuevo.';
             messageNouveauMot = 'Aquí tienes la nueva palabra para adivinar.';
             break;
     }
@@ -87,7 +92,7 @@ function verifierMot(reponseUtilisateur) {
         prononcerMot(getMot(motCorrect));
 
     } else {
-        resultatElement.innerText = messageMauvaiseReponse ;
+        resultatElement.innerText = messageMauvaiseReponseTexte ;
         prononcerMot( messageMauvaiseReponse + getMot(motCorrect));
     }
 }

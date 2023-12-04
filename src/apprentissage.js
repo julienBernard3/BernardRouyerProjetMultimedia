@@ -8,7 +8,7 @@ function afficherPageApprentissage() {
     // Ajout de la grille contenant les images
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
-    afficherCartes(mots, cardContainer, function() { prononcerMot(this.firstChild.alt); });
+    afficherCartes(cardContainer, function() { prononcerMot(getMot(this.firstChild.alt)); });
     grille.appendChild(cardContainer);
 
     // Bouton pour naviger sur la partie jeu

@@ -8,7 +8,6 @@ const nomsAnimaux = {
     italien: ['Gatto', 'Cavallo', 'Cane', 'Capra', 'Pecora', 'Uccello', 'Pesce', 'Pollo', 'Mucca']
 };
 var voices = window.speechSynthesis.getVoices();
-
 var mots = nomsAnimaux['francais'];
 
 function mettreAJourNoms() {
@@ -63,8 +62,12 @@ function prononcerMot(mot) {
     }
 }
 
+function getMot(numMot){
+    return mots[numMot];
+}
+
 // Fonction pour afficher les cartes du jeu
-function afficherCartes(mots, container, clickHandler) {
+function afficherCartes(container, clickHandler) {
     for (var i = 0; i < mots.length; i++) {
         var card = document.createElement('div');
         card.className = 'card';
@@ -72,7 +75,7 @@ function afficherCartes(mots, container, clickHandler) {
         var image = document.createElement('img');
         image.src = "images/" + nomsAnimaux["francais"][i] + ".jpg";
         image.style.maxWidth = "100%";
-        image.alt = mots[i];
+        image.alt = i;
         card.appendChild(image);
         container.appendChild(card);
     }

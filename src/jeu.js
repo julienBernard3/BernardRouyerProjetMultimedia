@@ -5,7 +5,8 @@ var resultatElement;
 // Fonction pour afficher la page du jeu
 function afficherPageJeu() {
     // Initialise motCorrect avec un mot aléatoire
-    motCorrect = mots[Math.floor(Math.random() * mots.length)];
+    motCorrect = Math.floor(Math.random() * mots.length);
+    console.log(motCorrect);
 
     var grille = document.getElementById('grille');
     grille.innerHTML = '';
@@ -13,7 +14,7 @@ function afficherPageJeu() {
     // Ajout de la grille contenant les images
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
-    afficherCartes(mots, cardContainer, function() { verifierMot(this.firstChild.alt); });
+    afficherCartes(cardContainer, function() { verifierMot(this.firstChild.alt); });
     grille.appendChild(cardContainer);
 
     // Bouton de navigation pour revenir à la page d'apprentissage
@@ -25,9 +26,11 @@ function afficherPageJeu() {
     resultatElement = document.createElement('p');
     grille.appendChild(resultatElement);
 
+    console.log('test');
     // Prononce le mot à deviner
     switch (document.getElementById('langue').value) {
         case 'francais':
+            console.log('francais');
             prononcerMot('Voici le mot à deviner:');
             break;
         case 'anglais':
@@ -43,11 +46,11 @@ function afficherPageJeu() {
             prononcerMot('Aquí está la palabra a adivinar:');
             break;
     }
-    prononcerMot(motCorrect);
+    prononcerMot(getMot(motCorrect));
 }
 
 // Fonction pour vérifier la réponse de l'utilisateur lors du jeu
-function verifierMot(reponseUtilisateur, langue) {
+function verifierMot(reponseUtilisateur) {
     let messageBonneReponse, messageMauvaiseReponse, messageNouveauMot, messageFourni;
 
     switch (document.getElementById('langue').value) {
@@ -78,17 +81,18 @@ function verifierMot(reponseUtilisateur, langue) {
             break;
     }
 
-    if (reponseUtilisateur === motCorrect) {
+    console.log(reponseUtilisateur, motCorrect)
+    if (getMot(reponseUtilisateur) === getMot(motCorrect)) {
         resultatElement.innerText = messageBonneReponse ;
         prononcerMot( messageBonneReponse );
 
-        motCorrect = mots[Math.floor(Math.random() * mots.length)];
+        motCorrect = Math.floor(Math.random() * mots.length);
         prononcerMot(messageNouveauMot);
-        prononcerMot(motCorrect);
+        prononcerMot(getMot(motCorrect));
 
     } else {
         resultatElement.innerText = messageMauvaiseReponse ;
-        prononcerMot( messageMauvaiseReponse + motCorrect);
+        prononcerMot( messageMauvaiseReponse + getMot(motCorrect));
     }
 }
 

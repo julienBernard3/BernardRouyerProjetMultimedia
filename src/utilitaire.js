@@ -38,7 +38,6 @@ function prononcerMot(mot) {
         if(voices.length === 0){
             voices = window.speechSynthesis.getVoices();
         }
-        console.log(voices);
         switch (document.getElementById('langue').value) {
             case 'francais':
                 utterance.voice = voices.find(voice => voice.lang === 'fr-FR');

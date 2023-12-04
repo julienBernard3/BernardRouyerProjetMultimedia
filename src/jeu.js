@@ -6,7 +6,6 @@ var resultatElement;
 function afficherPageJeu() {
     // Initialise motCorrect avec un mot aléatoire
     motCorrect = Math.floor(Math.random() * mots.length);
-    console.log(motCorrect);
 
     var grille = document.getElementById('grille');
     grille.innerHTML = '';
@@ -26,11 +25,9 @@ function afficherPageJeu() {
     resultatElement = document.createElement('p');
     grille.appendChild(resultatElement);
 
-    console.log('test');
     // Prononce le mot à deviner
     switch (document.getElementById('langue').value) {
         case 'francais':
-            console.log('francais');
             prononcerMot('Voici le mot à deviner:');
             break;
         case 'anglais':
@@ -81,7 +78,6 @@ function verifierMot(reponseUtilisateur) {
             break;
     }
 
-    console.log(reponseUtilisateur, motCorrect)
     if (getMot(reponseUtilisateur) === getMot(motCorrect)) {
         resultatElement.innerText = messageBonneReponse ;
         prononcerMot( messageBonneReponse );

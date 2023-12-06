@@ -7,10 +7,11 @@ function afficherPageJeu() {
     // Initialise motCorrect avec un mot aléatoire
     motCorrect = Math.floor(Math.random() * mots.length);
 
+    // Creation de la grille pour afficher les cartes
     var grille = document.getElementById('grille');
     grille.innerHTML = '';
 
-    // Ajout de la grille contenant les images
+    // Ajout des images dans la grille
     var cardContainer = document.createElement('div');
     cardContainer.className = 'grid-container';
     afficherCartes(cardContainer, function() { verifierMot(this.firstChild.alt); });
@@ -25,7 +26,7 @@ function afficherPageJeu() {
     resultatElement = document.createElement('p');
     grille.appendChild(resultatElement);
 
-    // Prononce le mot à deviner
+    // Prononce le mot à deviner en fonction de la langue
     switch (document.getElementById('langue').value) {
         case 'francais':
             prononcerMot('Voici le mot à deviner:');
@@ -47,9 +48,11 @@ function afficherPageJeu() {
 }
 
 // Fonction pour vérifier la réponse de l'utilisateur lors du jeu
+// La synthèse vocale est utilisée pour donner le résultat
 function verifierMot(reponseUtilisateur) {
     let messageBonneReponse, messageMauvaiseReponse, messageMauvaiseReponseTexte, messageNouveauMot;
 
+    // Sélection du message en fonction de la langue
     switch (document.getElementById('langue').value) {
         case 'francais':
             messageBonneReponse = 'Bien joué! Vous avez trouvé le mot correct.';
@@ -83,14 +86,16 @@ function verifierMot(reponseUtilisateur) {
             break;
     }
 
+    // Si la réponse de l'utilisateur est correcte, on affiche un message de réussite
     if (getMot(reponseUtilisateur) === getMot(motCorrect)) {
         resultatElement.innerText = messageBonneReponse ;
         prononcerMot( messageBonneReponse );
-
+        // On choisit aléatoirement un nouveau mot à deviner
         motCorrect = Math.floor(Math.random() * mots.length);
         prononcerMot(messageNouveauMot);
         prononcerMot(getMot(motCorrect));
 
+    // Sinon, on affiche un message pour indiquer que la réponse est incorrecte et on redonne le mot à deviner
     } else {
         resultatElement.innerText = messageMauvaiseReponseTexte ;
         prononcerMot( messageMauvaiseReponse + getMot(motCorrect));

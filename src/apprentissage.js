@@ -2,6 +2,7 @@
 
 // Fonction pour afficher la page d'apprentissage
 function afficherPageApprentissage() {
+    // Creation de la grille pour afficher les cartes
     var grille = document.getElementById('grille');
     grille.innerHTML = '';
 
